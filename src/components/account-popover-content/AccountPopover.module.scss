@@ -1,0 +1,39 @@
+.container {
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  
+  .name {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .email, .role {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  
+  .logoutButton,
+  .loginButton {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%; 
+  }
+  
+  .logoutButton {
+    background-color: #ceb98b;
+    color: #fff;
+  }
+  
+  .loginButton {
+    background-color: #ceb98b;
+    color: #fff;
+  }
+  

@@ -3,6 +3,7 @@ import { FC } from "react"
 import { showPromoAtom } from "../../contexts/showPromoAtom"
 import { IoClose } from "react-icons/io5"
 import './Header.scss'
+import { useAuth } from "../../hooks/use-auth"
 
 type HeaderProps = {
   rightComponents?: React.ReactNode
@@ -10,14 +11,17 @@ type HeaderProps = {
 }
 
 const Header: FC<HeaderProps> = ({ rightComponents, tabs }) => {
+  const { isAuthenticated } = useAuth()
   const [showPromo, setShowPromo] = useAtom(showPromoAtom)
+
+  const showPromoValue = showPromo && !isAuthenticated
 
   return (
     <header className="header">
-      {showPromo && (
+      {showPromoValue && (
         <div className="header__promo">
           <p>
-            Sign up and get 20% off to your first order. <a href="#">Sign Up Now</a>
+            Registre-se e ganhe 20% de desconto <a href="login">Registre-se aqui</a>
           </p>
           <button className="close-btn" onClick={() => setShowPromo(false)}>
             <IoClose size={14} />
@@ -28,7 +32,7 @@ const Header: FC<HeaderProps> = ({ rightComponents, tabs }) => {
       <div className="header__main">
         <div className="logo">STOREFRONT</div>
 
-       {tabs && (<nav className="tabs">
+        {tabs && (<nav className="tabs">
           {tabs.map((tab) => (
             <a href="#" key={tab}>
               {tab}

@@ -1,0 +1,130 @@
+.container {
+    display: flex;
+    height: 100vh;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .leftSide {
+    width: 50%;
+    position: relative;
+    background: #f4f4f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    overflow: hidden;
+  }
+  
+  .imageOverlay {
+    background-image: url('/banner-login.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  
+  .testimonial {
+    position: relative;
+    z-index: 1;
+    color: white;
+    max-width: 400px;
+  }
+  
+  .quote {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+  
+  .user {
+    font-size: 0.875rem;
+  }
+  
+  .name {
+    font-weight: bold;
+  }
+  
+  .role {
+    opacity: 0.8;
+  }
+  
+  .rightSide {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .formWrapper {
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .input {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  
+  .submitButton {
+    background-color: #000;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .googleButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .googleIcon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #6b7280;
+  
+    a {
+      color: #111;
+      font-weight: 500;
+      text-decoration: none;
+    }
+  }
+  
