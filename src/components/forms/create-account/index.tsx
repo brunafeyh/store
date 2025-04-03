@@ -1,11 +1,16 @@
 import { useForm } from "react-hook-form";
-import { CreateAccountFormData, createAccountSchema } from "../../../schemas/auth";
+import { CreateAccountFormData, createAccountSchema, CreateAccountSubmitFormData } from "../../../schemas/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import styles from "./CreateAccountForm.module.scss";
 import { useState } from "react";
 import { ViewFilled, ViewOffFilled } from "@carbon/icons-react";
+import useRegisterClientMutations from "../../../hooks/use-register-mutations";
+import Loading from "../../loading";
+import { useNavigate } from "react-router-dom";
 
 export function CreateAccountForm() {
+
+    const { registerClientMutation } = useRegisterClientMutations()
     const {
         register,
         handleSubmit,
@@ -14,20 +19,27 @@ export function CreateAccountForm() {
         resolver: zodResolver(createAccountSchema),
     })
 
-
+    const navigate = useNavigate()
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    const onSubmit = async(data: CreateAccountFormData) => {
-        const userData = {
+    const onSubmit = async (data: CreateAccountFormData) => {
+        const userData: CreateAccountSubmitFormData = {
             name: data.name,
             email: data.email,
             password: data.password,
             role: "CLIENT",
+        } 
+        try{
+            await registerClientMutation.mutateAsync(userData)
+            navigate('/')
+        }catch(err){
+            console.log(err)
         }
-        console.log("Formulário enviado:", userData);
     }
+
+    if(registerClientMutation.isPending) return <Loading/>
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
