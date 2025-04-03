@@ -1,48 +1,43 @@
-import { FC } from 'react'
+import { useAtom } from "jotai"
+import { FC } from "react"
+import { showPromoAtom } from "../../contexts/showPromoAtom"
+import { IoClose } from "react-icons/io5"
 import './Header.scss'
-import { useAtom } from 'jotai'
 
-import { IoClose, IoCartOutline, IoPersonOutline, IoSearchOutline } from 'react-icons/io5'
-import { showPromoAtom } from '../../contexts/showPromoAtom'
+type HeaderProps = {
+  rightComponents?: React.ReactNode
+  tabs?: string[]
+}
 
-const Header: FC = () => {
+const Header: FC<HeaderProps> = ({ rightComponents, tabs }) => {
   const [showPromo, setShowPromo] = useAtom(showPromoAtom)
-
-  const tabs = ['Home', 'Shop', 'Collections', 'About', 'Contact']
 
   return (
     <header className="header">
       {showPromo && (
         <div className="header__promo">
           <p>
-            Sign up and get 20% off to your first order.{' '}
-            <a href="#">Sign Up Now</a>
+            Sign up and get 20% off to your first order. <a href="#">Sign Up Now</a>
           </p>
           <button className="close-btn" onClick={() => setShowPromo(false)}>
-            <IoClose size={18} />
+            <IoClose size={14} />
           </button>
         </div>
       )}
 
       <div className="header__main">
-        <div className="logo">storefront</div>
+        <div className="logo">STOREFRONT</div>
 
-        <nav className="tabs">
+       {tabs && (<nav className="tabs">
           {tabs.map((tab) => (
             <a href="#" key={tab}>
               {tab}
             </a>
           ))}
-        </nav>
+        </nav>)}
 
         <div className="header__right">
-          <div className="search-container">
-            <input type="text" placeholder="Search for products..." />
-            <IoSearchOutline className="search-icon" />
-          </div>
-
-          <IoPersonOutline size={22} className="icon" />
-          <IoCartOutline size={22} className="icon" />
+          {rightComponents}
         </div>
       </div>
     </header>
