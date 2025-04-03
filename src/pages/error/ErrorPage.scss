@@ -1,0 +1,60 @@
+.error-page {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	background: linear-gradient(145deg, #fdfdfd, #f2f2f2);
+	padding: 2rem;
+
+	.error-content {
+		text-align: center;
+		max-width: 500px;
+		padding: 2rem;
+		border-radius: 16px;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+		background-color: #fff;
+
+		.error-code {
+			font-size: 5rem;
+			font-weight: 800;
+			color: hwb(224 22% 10%);
+			margin-bottom: 0.5rem;
+		}
+
+		.error-title {
+			font-size: 2rem;
+			font-weight: 600;
+			color: hwb(224 25% 16%);
+			margin-bottom: 1rem;
+		}
+
+		.error-description {
+			font-size: 1rem;
+			color: #6c757d;
+			margin-bottom: 2rem;
+		}
+
+		.back-button {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			background-color: hwb(224 22% 27%);;
+			color: #fff;
+			border: none;
+			padding: 0.75rem 1.5rem;
+			border-radius: 8px;
+			cursor: pointer;
+			font-size: 1rem;
+			font-weight: 500;
+			transition: background-color 0.3s ease;
+
+			.icon {
+				font-size: 1.2rem;
+			}
+
+			&:hover {
+				background-color: hwb(224 18% 38%);;
+			}
+		}
+	}
+}
