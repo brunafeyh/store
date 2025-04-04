@@ -1,10 +1,9 @@
-import { FC } from "react"
-import Header from "../../../components/header"
+import PageAdminLayout from "../../../layout/page-admin-layout";
 
-export const AdminHome:FC = () =>{
-    return (
-        <div>
-        <Header/>
-      </div>
-    )
+export const AdminHome = () => {
+  return(
+    <PageAdminLayout title= 'DashBoard'>
+      <h1>jkj</h1>
+    </PageAdminLayout>
+  )
 }

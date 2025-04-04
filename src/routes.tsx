@@ -25,6 +25,11 @@ export const router = createBrowserRouter([
 				path: '/admin',
 				element: <AdminHome/>,
 			},
+
+			{
+				path: '/admin/dashboard',
+				element: <AdminHome/>,
+			},
 			
 			{
 				path: '*',
