@@ -1,0 +1,22 @@
+.headerWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+  
+  .title {
+    font-size: 1.25rem; 
+    font-weight: 500;
+    margin: 0;
+  }
+  
+  .rightContent {
+    display: flex;
+    align-items: center;
+  }
+  .rightItem {
+    margin-left: 1rem;
+  }
+  

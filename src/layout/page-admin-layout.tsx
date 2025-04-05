@@ -2,6 +2,7 @@ import { FC, PropsWithChildren, ReactNode } from 'react'
 import styles from './PageAdminLayout.module.scss'
 import { IoHomeOutline, IoPeopleCircleOutline, IoPeopleOutline, IoStorefrontOutline } from 'react-icons/io5'
 import Sidebar from '../components/sidebar'
+import { useSetTitle } from '../hooks/use-title'
 
 interface Props {
   title: string
@@ -17,31 +18,31 @@ const menuItems = [
     icon: <IoStorefrontOutline />,
     label: "Produtos",
     children: [
-      { label: "Categorias", route: "/admin/produtos/categorias" },
-      { label: "Marcas", route: "/admin/produtos/marcas" },
-      { label: "Itens", route: "/admin/produtos/itens" },
-      { label: "Estoque", route: "/admin/produtos/estoque" },
+      { label: "Categorias", route: "/admin/products/categories" },
+      { label: "Marcas", route: "/admin/products/branchs" },
+      { label: "Itens", route: "/admin/products/items" },
+      { label: "Estoque", route: "/admin/products/stock" },
     ],
   },
   {
     icon: <IoPeopleOutline />,
     label: "Clientes",
-    route: "/admin/clientes"
+    route: "/admin/clients"
   },
   {
     icon: <IoPeopleCircleOutline />,
     label: "Funcionários",
-    route: "/admin/funcionarios"
+    route: "/admin/employees"
   }
 ];
 
 const PageAdminLayout: FC<PropsWithChildren<Props>> = ({ title, children }) => {
+  useSetTitle(title)
   return (
     <div className={styles.pageLayout}>
       <div className={styles.contentWrapper}>
         <Sidebar menuItems={menuItems} />
         <main className={styles.mainContent}>
-          <h1 className={styles.pageTitle}>{title}</h1>
           <div className={styles.pageBody}>{children}</div>
         </main>
       </div>

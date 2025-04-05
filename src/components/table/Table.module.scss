@@ -1,0 +1,119 @@
+.tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+  
+    th {
+      background-color: #f9f9f9;
+      font-weight: bold;
+    }
+  
+    td {
+      background-color: #fff;
+    }
+  }
+  
+  .skeleton {
+    height: 20px;
+    background: #eee;
+    border-radius: 4px;
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+  
+  .empty,
+  .error {
+    text-align: center;
+    padding: 2rem;
+    color: #999;
+    font-size: 1.1rem;
+  }
+  
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  
+    select {
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+  
+    .paginationButtons {
+      display: flex;
+      gap: 4px;
+  
+      button {
+        padding: 4px 10px;
+        border: none;
+        background-color: #f0f0f0;
+        cursor: pointer;
+        border-radius: 4px;
+  
+        &:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+        }
+  
+        &:hover:not(:disabled) {
+          background-color: #e0e0e0;
+        }
+      }
+    }
+  }
+  
+  .headerCell {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    font-weight: 400;
+    justify-content: flex-start;
+    padding: 8px 0px;
+  }
+  
+  .headerCell button {
+    background: transparent;
+    border: none;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .headerCell svg {
+    width: 14px;
+    height: 14px;
+    color: #666;
+    transition: color 0.2s ease-in-out;
+  
+    &:hover {
+      color: #333;
+    }
+  }
+  
+  .activeFilter {
+    color: #4f46e5 !important;
+  }
+  

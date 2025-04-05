@@ -1,0 +1,71 @@
+.modal {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    font-family: sans-serif;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 300;
+    }
+  
+    .icon {
+      width: 24px;
+      height: 24px;
+      color: #f39c12;
+    }
+  }
+  
+  .text {
+    margin-top: 1rem;
+    font-size: 1.125rem;
+    color: #333;
+  }
+  
+  .description {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 0.5rem;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+  
+    button {
+      flex: 1;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  
+    .cancelButton {
+      border: 1px solid #ccc;
+      background-color: white;
+      color: #333;
+  
+      &:hover {
+        background-color: #f2f2f2;
+      }
+    }
+  
+    .confirmButton {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+  
+      &:hover {
+        background-color: #c0392b;
+      }
+    }
+  }
+  

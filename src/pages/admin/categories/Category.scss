@@ -1,0 +1,32 @@
+.table-row {
+    cursor: pointer;
+  
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+  
+  .table-cell {
+    padding: 12px 16px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 14px;
+  }
+  
+  .status {
+    font-weight: bold;
+    color: #4caf50;
+  
+    &::after {
+      content: ' ●';
+      font-size: 10px;
+      vertical-align: middle;
+      color: #4caf50;
+    }
+  }
+
+  .title{
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  

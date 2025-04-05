@@ -23,6 +23,7 @@ export const useAuth = () => {
             setAuthorizationHeader({ instance: store_API, token: token })
             console.log(token)
             navigate('/')
+            toast.success('Seja bem vindo! Login feito com sucesso!')
             return true
         } catch (error) {
             toast.error('Erro ao fazer login, verifique suas credenciais')

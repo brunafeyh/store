@@ -33,7 +33,7 @@ export function CreateAccountForm() {
         } 
         try{
             await registerClientMutation.mutateAsync(userData)
-            navigate('/')
+            navigate('/login')
         }catch(err){
             console.log(err)
         }
