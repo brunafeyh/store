@@ -21,7 +21,6 @@ export const useAuth = () => {
             const token = await authService.login(credentials)
             setAccessToken(token)
             setAuthorizationHeader({ instance: store_API, token: token })
-            console.log(token)
             navigate('/')
             toast.success('Seja bem vindo! Login feito com sucesso!')
             return true

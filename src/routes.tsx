@@ -6,6 +6,7 @@ import RegisterPage from './pages/register'
 import { AdminHome } from './pages/admin/home'
 import { CategoriesPage } from './pages/admin/categories'
 import { BrandsPage } from './pages/admin/brands'
+import { ItemsPage } from './pages/admin/items'
 
 export const router = createBrowserRouter([
 	{
@@ -39,6 +40,11 @@ export const router = createBrowserRouter([
 			{
 				path: '/admin/products/brands',
 				element: <BrandsPage/>,
+			},
+
+			{
+				path: '/admin/products/items',
+				element: <ItemsPage/>,
 			},
 			
 			{
