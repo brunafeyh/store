@@ -1,7 +1,8 @@
 import { z } from "zod";
 
 export const categoryFormSchema = z.object({
-    name: z.string()
+    name: z.string(),
+    description: z.string(),
 })
 
 export type CategoryForm = z.infer< typeof categoryFormSchema>

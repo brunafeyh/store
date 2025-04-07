@@ -41,7 +41,7 @@
     border: none;
     cursor: pointer;
     color: #333;
-    transition: background 0.2s ease;
+
     font-size: 1rem;
     font-weight: 500;
   }
@@ -63,7 +63,7 @@
   }
   
   .menuButton .badge {
-    background-color: #ff6b6b;
+    background-color: #bd2d2d;
     color: white;
     padding: 0 8px;
     border-radius: 12px;
@@ -97,7 +97,7 @@
   .submenu button {
     background: none;
     border: none;
-    padding: 8px 0;
+    padding: 8px 8px;
     color: #555;
     width: 100%;
     text-align: left;
@@ -109,7 +109,7 @@
   }
   
   .submenu button.active {
-    background-color: #dcdcdc;
+    background-color: #eeeded;
     font-weight: bold;
   }
   

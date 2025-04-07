@@ -57,6 +57,10 @@ export const CategoriesPage = () => {
                 filterVariant: 'text',
             }
         },
+        {
+            accessorKey: 'edit',
+            header: '',
+        },
     ]
 
     const handleOpenDelete = (id: string) =>{

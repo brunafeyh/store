@@ -23,7 +23,8 @@ const CategoryForm: FC<Props> = ({ closeModal, id }) => {
     } = useForm<CategoryFormType>({
         resolver: zodResolver(categoryFormSchema),
         values: {
-            name: data?.name || ''
+            name: data?.name || '',
+            description: data?.description || ''
         }
     })
 
@@ -40,12 +41,23 @@ const CategoryForm: FC<Props> = ({ closeModal, id }) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
             <div className={styles.fieldGroup}>
-                <label htmlFor="name">Nome da Categoria</label>
+                <label htmlFor="name">Nome</label>
                 <input
                     id="name"
                     type="text"
                     {...register('name')}
                     className={errors.name ? styles.errorInput : ''}
+                />
+                {errors.name && <span className={styles.error}>{errors.name.message}</span>}
+            </div>
+
+            <div className={styles.fieldGroup}>
+                <label htmlFor="description">Descrição</label>
+                <input
+                    id="description"
+                    type="text"
+                    {...register('description')}
+                    className={errors.description ? styles.errorInput : ''}
                 />
                 {errors.name && <span className={styles.error}>{errors.name.message}</span>}
             </div>

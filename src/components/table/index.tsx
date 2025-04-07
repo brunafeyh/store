@@ -148,31 +148,31 @@ const Table: FC<TableProps> = ({ columns, data, totalRows, renderData, isLoading
         </tbody>
       </table>
       {!isLoading && !error && (
-  <div className={styles.pagination}>
-    <span>Linhas por página:</span>
-    <select value={pageSize} onChange={handleRowsPerPageChange}>
-      {rowsPerPageOptions.map((option) => (
-        <option key={option} value={option}>{option}</option>
-      ))}
-    </select>
-    <span>{`${page * pageSize + 1} a ${Math.min((page + 1) * pageSize, totalRows)} de ${totalRows}`}</span>
-    
-    <div className={styles.paginationButtons}>
-      <button
-        onClick={() => handlePageChange(null, Math.max(0, page - 1))}
-        disabled={page === 0}
-      >
-        {'<'}
-      </button>
-      <button
-        onClick={() => handlePageChange(null, page + 1)}
-        disabled={(page + 1) * pageSize >= totalRows}
-      >
-        {'>'}
-      </button>
-    </div>
-  </div>
-)}
+        <div className={styles.pagination}>
+          <span>Linhas por página:</span>
+          <select value={pageSize} onChange={handleRowsPerPageChange}>
+            {rowsPerPageOptions.map((option) => (
+              <option key={option} value={option}>{option}</option>
+            ))}
+          </select>
+          <span>{`${page * pageSize + 1} a ${Math.min((page + 1) * pageSize, totalRows)} de ${totalRows}`}</span>
+
+          <div className={styles.paginationButtons}>
+            <button
+              onClick={() => handlePageChange(null, Math.max(0, page - 1))}
+              disabled={page === 0}
+            >
+              {'<'}
+            </button>
+            <button
+              onClick={() => handlePageChange(null, page + 1)}
+              disabled={(page + 1) * pageSize >= totalRows}
+            >
+              {'>'}
+            </button>
+          </div>
+        </div>
+      )}
 
       <Popover ref={popoverFilter}>
         <div className={styles.popoverContent}>

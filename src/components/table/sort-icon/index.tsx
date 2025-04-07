@@ -14,7 +14,7 @@ const SortIcon: FC<SortIconProps> = ({ sortState }) => {
   }
 
   if (descDirection(sortState)) {
-    return <ArrowUp width={16} height={16} color='primary'/>;
+    return <ArrowUp style={{ width: 16, height: 16, color: THEME_COLORS.primary.c60 }}/>;
   }
 
   return <ArrowsVertical width={16} height={16} />;
