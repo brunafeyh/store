@@ -7,7 +7,7 @@ import { IoAddOutline, IoDownloadOutline } from "react-icons/io5";
 import { useCategories } from "../../../hooks/categories/use-categories";
 import { formatDateTime } from "../../../utils/formatDateTime";
 import { Edit, TrashCan } from "@carbon/icons-react";
-import { closeModal, Modal, openModal, useModal } from "../../../components/modal";
+import { closeModal, Modal, ModalOptions, openModal, useModal } from "../../../components/modal";
 import CategoryForm from "../../../components/forms/category";
 import { usePaginateArray } from "../../../hooks/use-paginate-array";
 import { useState } from "react";
@@ -15,7 +15,6 @@ import { useCategoriesMutations } from "../../../hooks/categories/use-categories
 import ConfirmationModal from "../../../components/confirmation-modal";
 
 export const CategoriesPage = () => {
-
     const { data, isLoading, error } = useCategories()
 
     const {deleteCategory} = useCategoriesMutations()
@@ -63,14 +62,9 @@ export const CategoriesPage = () => {
         },
     ]
 
-    const handleOpenDelete = (id: string) =>{
+    const handleOpenModal = (id : string, modal: React.RefObject<ModalOptions | null>) =>{
         setId(id)
-        openModal(deleteModal)
-    }
-
-    const handleOpenEdit = (id: string) =>{
-        setId(id)
-        openModal(editModal)
+        openModal(modal)
     }
 
     const handleDelete = async() =>{
@@ -109,7 +103,7 @@ export const CategoriesPage = () => {
                         <td className="table-cell">{row.original.description}</td>
                         <td className="table-cell status">{formatDateTime(row.original.createdAt)}</td>
                         <td className="table-cell status">{formatDateTime(row.original.updatedAt)}</td>
-                        <td className="table-cell"><button onClick={() => handleOpenEdit(row.original.id)}><Edit /></button><button onClick={() => handleOpenDelete(row.original.id)}><TrashCan /></button></td>
+                        <td className="table-cell"><button onClick={() => handleOpenModal(row.original.id, editModal)}><Edit /></button><button onClick={() => handleOpenModal(row.original.id, deleteModal)}><TrashCan /></button></td>
                     </tr>
                 )}
             />

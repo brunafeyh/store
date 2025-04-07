@@ -1,42 +1,40 @@
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import styles from './CategoryForm.module.scss'
-import { CategoryForm as CategoryFormType, categoryFormSchema } from '../../../schemas/categories'
-import { useCategoriesMutations } from '../../../hooks/categories/use-categories-mutations'
+import styles from '../category/CategoryForm.module.scss'
 import Loading from '../../loading'
-import { useCategorieByid } from '../../../hooks/categories/use-categorie-by-id'
+import { brandFormSchema, BrandForm as BrandFormType } from '../../../schemas/brand'
+import { useBrandByid } from '../../../hooks/brands/use-brand-by-id'
+import { useBrandsMutations } from '../../../hooks/brands/use-brands-mutations'
 
 interface Props {
-    closeModal: () => void
+    onCloseModal: () => void
     id?: string
 }
 
-const CategoryForm: FC<Props> = ({ closeModal, id }) => {
-    
-    const {data, isLoading} = id ? useCategorieByid(id) : {}
-
+const BrandForm: FC<Props> = ({ onCloseModal, id }) => {
+    const { data, isLoading } = useBrandByid(id)
     const {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm<CategoryFormType>({
-        resolver: zodResolver(categoryFormSchema),
+    } = useForm<BrandFormType>({
+        resolver: zodResolver(brandFormSchema),
         values: {
             name: data?.name || '',
             description: data?.description || ''
         }
     })
 
-    const { createCategory, updateCategory } = useCategoriesMutations()
+    const { createBrand, updateBrand } = useBrandsMutations()
 
-    const onSubmit = async (data: CategoryFormType) => {
-        if(id) await updateCategory.mutateAsync({id: id, form: data})
-        else await createCategory.mutateAsync(data)
-        closeModal()
+    const onSubmit = async (data: BrandFormType) => {
+        if (id) await updateBrand.mutateAsync({ id: id, form: data })
+        else await createBrand.mutateAsync(data)
+        onCloseModal()
     }
 
-    if (createCategory.isPending || updateCategory.isPending || isLoading) return <Loading />
+    if (createBrand.isPending || updateBrand.isPending || isLoading) return <Loading />
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -63,7 +61,7 @@ const CategoryForm: FC<Props> = ({ closeModal, id }) => {
             </div>
 
             <div className={styles.buttonGroup}>
-                <button type="button" className={styles.cancelButton} onClick={closeModal}>
+                <button type="button" className={styles.cancelButton} onClick={onCloseModal}>
                     Cancelar
                 </button>
 
@@ -75,4 +73,4 @@ const CategoryForm: FC<Props> = ({ closeModal, id }) => {
     )
 }
 
-export default CategoryForm
+export default BrandForm

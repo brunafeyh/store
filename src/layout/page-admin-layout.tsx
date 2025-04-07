@@ -19,7 +19,7 @@ const menuItems = [
     label: "Produtos",
     children: [
       { label: "Categorias", route: "/admin/products/categories" },
-      { label: "Marcas", route: "/admin/products/branchs" },
+      { label: "Marcas", route: "/admin/products/brands" },
       { label: "Itens", route: "/admin/products/items" },
       { label: "Estoque", route: "/admin/products/stock" },
     ],

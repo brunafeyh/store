@@ -5,7 +5,7 @@ import LoginPage from './pages/login'
 import RegisterPage from './pages/register'
 import { AdminHome } from './pages/admin/home'
 import { CategoriesPage } from './pages/admin/categories'
-import { BranchsPage } from './pages/admin/branchs'
+import { BrandsPage } from './pages/admin/brands'
 
 export const router = createBrowserRouter([
 	{
@@ -37,8 +37,8 @@ export const router = createBrowserRouter([
 				element: <CategoriesPage/>,
 			},
 			{
-				path: '/admin/products/branchs',
-				element: <BranchsPage/>,
+				path: '/admin/products/brands',
+				element: <BrandsPage/>,
 			},
 			
 			{
