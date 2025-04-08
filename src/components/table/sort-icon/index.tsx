@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { ArrowDown, ArrowUp, ArrowsVertical } from '@carbon/icons-react';
-import { Direction } from '../../../types/filter';
+import { Direction } from '../../../types/table_filter';
 import { ascDirection, descDirection } from '../../../utils/filter';
 import { THEME_COLORS } from '../../../theme/colors';
 

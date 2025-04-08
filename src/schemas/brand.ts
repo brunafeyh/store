@@ -15,4 +15,4 @@ export const brandSchema = z.object({
     updatedAt: z.string()
 })
 
-export type Brand = z.infer<typeof brandFormSchema>
+export type Brand = z.infer<typeof brandSchema>

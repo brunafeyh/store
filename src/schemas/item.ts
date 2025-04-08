@@ -28,3 +28,11 @@ export const itemSchema = z.object({
 })
 
 export type Item = z.infer<typeof itemSchema>
+
+export const filterItemSchema = z.object({
+    name: z.string(),
+    brandId: z.string(),
+    categoryId: z.string()
+})
+
+export type FilterItemParamns = z.infer<typeof filterItemSchema>

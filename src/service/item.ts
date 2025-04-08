@@ -1,5 +1,6 @@
 import store_API from "../shared";
-import { Item, ItemForm } from "../schemas/item";
+import { FilterItemParamns, Item, ItemForm } from "../schemas/item";
+import { AxiosResponse } from "axios";
 
 class ItemService {
     private apiUrl: string;
@@ -7,6 +8,16 @@ class ItemService {
     constructor(apiUrl: string = `items`) {
         this.apiUrl = apiUrl;
     }
+
+    async listAll(
+		filters?: FilterItemParamns,
+	): Promise<Item[]> {
+		const response: AxiosResponse<Item[]> = await store_API.get(`${this.apiUrl}`, {
+			params: { ...filters, },
+		})
+		return response.data
+	}
+
 
     async listItems(): Promise<Item[]> {
         const response = await store_API.get(`${this.apiUrl}`)

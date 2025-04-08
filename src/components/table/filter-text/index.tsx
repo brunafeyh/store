@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Search } from '@carbon/icons-react';
 import styles from './FilterTextField.module.scss';
-import { Filter } from '../../../types/filter';
+import { Filter } from '../../../types/table_filter';
 
 interface FilterInputProps {
   filterType: Filter;

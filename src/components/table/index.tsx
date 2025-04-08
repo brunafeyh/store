@@ -7,7 +7,7 @@ import { usePaginationParams } from '../../hooks/params/pagination';
 import { useTableFilter } from '../../hooks/use-table-filter';
 import { useTableQueryParams } from '../../hooks/use-table-query-paramns';
 import { DESCEND } from '../../utils/constants/tables';
-import { Direction } from '../../types/filter';
+import { Direction } from '../../types/table_filter';
 import { isEmptyData, isValidHeader } from '../../utils/filter';
 import { isFiltered } from '../../utils/table';
 import FilterTextField from './filter-text';
