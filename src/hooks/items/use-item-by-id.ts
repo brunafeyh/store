@@ -16,6 +16,7 @@ export const useItemByid = (id: string) => {
                 throw error;
             }
         },
+        enabled: !!id
     })
 
     return { data, isLoading, error, refetch }

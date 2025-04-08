@@ -7,7 +7,8 @@ import Loading from "../../../components/loading"
 import { useCategories } from "../../../hooks/categories/use-categories"
 import { useBrands } from "../../../hooks/brands/use-brands"
 import styles from './ItemsPage.module.scss'
-import { Modal, openModal, useModal } from "../../../components/modal";
+import { closeModal, Modal, openModal, useModal } from "../../../components/modal";
+import ItemForm from "../../../components/forms/item";
 
 export const ItemsPage: FC = () => {
     const [categoryId, setCategoryId] = useState('')
@@ -68,7 +69,7 @@ export const ItemsPage: FC = () => {
                 ))}
             </div>
             <Modal ref={addModal}>
-                <></>
+            <ItemForm onCancel={() => closeModal(addModal)}/>
             </Modal>
         </PageAdminLayout>
     )

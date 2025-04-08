@@ -33,20 +33,7 @@
     }
 }
 
-button {
-    background-color: #0070f3;
-    color: white;
-    font-weight: 600;
-    padding: 0.55rem 1.5rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
 
-    &:hover {
-        background-color: #005ad1;
-    }
-}
 
 .grid {
     margin-top: 2rem;

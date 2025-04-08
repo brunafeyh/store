@@ -1,0 +1,84 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .fieldGroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .fieldGroup label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .fieldGroup input,
+  .fieldGroup textarea,
+  .fieldGroup select {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border 0.2s;
+  }
+  
+  .fieldGroup input:focus,
+  .fieldGroup textarea:focus,
+  .fieldGroup select:focus {
+    border-color: #333;
+    outline: none;
+  }
+  
+  .errorInput {
+    border-color: #e63946;
+    background-color: #ffe5e5;
+  }
+  
+  .error {
+    color: #e63946;
+    font-size: 0.9rem;
+    margin-top: 0.4rem;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .submitButton,
+  .cancelButton {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .submitButton {
+    background-color: #222;
+    color: white;
+  }
+  
+  .submitButton:hover {
+    background-color: #000;
+  }
+  
+  .cancelButton {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  .cancelButton:hover {
+    background-color: #e0e0e0;
+  }
+  
