@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import ItemService from '../../service/item';
-import { ItemForm } from '../../schemas/item';
+import { ItemForm, StockItemForm } from '../../schemas/item';
 
 const service = new ItemService();
 
@@ -35,6 +35,19 @@ export const useItemsMutations = () => {
             toast.error('Erro ao atualizar Item.');
         },
     })
+    const updateStockItem = useMutation({
+        mutationFn: async ({ id, form }: { id: string, form: StockItemForm }) => {
+            return service.updateStockItem(id, form);
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['items'] });
+            toast.success('Estoque de Item atualizado com sucesso!');
+        },
+        onError: (error) => {
+            console.error('Erro ao atualizar Estoque de Item:', error);
+            toast.error('Erro ao atualizar Estoque de Item.');
+        },
+    })
 
     const deleteItem = useMutation({
         mutationFn: async (id: string) => {
@@ -53,6 +66,7 @@ export const useItemsMutations = () => {
     return {
         createItem,
         deleteItem,
-        updateItem
+        updateItem,
+        updateStockItem
     }
 }

@@ -1,5 +1,5 @@
 import store_API from "../shared";
-import { FilterItemParamns, Item, ItemForm } from "../schemas/item";
+import { FilterItemParamns, Item, ItemForm, StockItemForm } from "../schemas/item";
 import { AxiosResponse } from "axios";
 
 class ItemService {
@@ -35,6 +35,10 @@ class ItemService {
 
     async updateItem(id: string, form: ItemForm): Promise<void> {
         await store_API.put(`${this.apiUrl}/${id}`, form)
+    }
+
+    async updateStockItem(id: string, form: StockItemForm): Promise<void> {
+        await store_API.patch(`${this.apiUrl}/${id}`, form)
     }
 
     async deleteItem(id: string): Promise<void> {

@@ -36,3 +36,9 @@ export const filterItemSchema = z.object({
 })
 
 export type FilterItemParamns = z.infer<typeof filterItemSchema>
+
+export const stockItemFormSchema = z.object({
+    stock: z.number(),
+})
+
+export type StockItemForm = z.infer<typeof stockItemFormSchema>

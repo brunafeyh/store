@@ -7,6 +7,7 @@ import { AdminHome } from './pages/admin/home'
 import { CategoriesPage } from './pages/admin/categories'
 import { BrandsPage } from './pages/admin/brands'
 import { ItemsPage } from './pages/admin/items'
+import { StockPage } from './pages/admin/stock'
 
 export const router = createBrowserRouter([
 	{
@@ -18,35 +19,38 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/login',
-				element: <LoginPage/>,
+				element: <LoginPage />,
 			},
 			{
 				path: '/register',
-				element: <RegisterPage/>,
+				element: <RegisterPage />,
 			},
 			{
 				path: '/admin',
-				element: <AdminHome/>,
+				element: <AdminHome />,
 			},
 
 			{
 				path: '/admin/dashboard',
-				element: <AdminHome/>,
+				element: <AdminHome />,
 			},
 			{
 				path: '/admin/products/categories',
-				element: <CategoriesPage/>,
+				element: <CategoriesPage />,
 			},
 			{
 				path: '/admin/products/brands',
-				element: <BrandsPage/>,
+				element: <BrandsPage />,
 			},
 
 			{
 				path: '/admin/products/items',
-				element: <ItemsPage/>,
+				element: <ItemsPage />,
 			},
-			
+			{
+				path: '/admin/products/stock',
+				element: <StockPage />,
+			},
 			{
 				path: '*',
 				element: <ErrorPage code={400} title="Ops! Página não encontrada" />,

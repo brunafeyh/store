@@ -17,7 +17,7 @@ import ConfirmationModal from "../../../components/confirmation-modal";
 export const CategoriesPage = () => {
     const { data, isLoading, error } = useCategories()
 
-    const {deleteCategory} = useCategoriesMutations()
+    const { deleteCategory } = useCategoriesMutations()
 
     const [id, setId] = useState<string>()
 
@@ -62,12 +62,12 @@ export const CategoriesPage = () => {
         },
     ]
 
-    const handleOpenModal = (id : string, modal: React.RefObject<ModalOptions | null>) =>{
+    const handleOpenModal = (id: string, modal: React.RefObject<ModalOptions | null>) => {
         setId(id)
         openModal(modal)
     }
 
-    const handleDelete = async() =>{
+    const handleDelete = async () => {
         await deleteCategory.mutateAsync(id || '')
         setId(undefined)
         closeModal(deleteModal)
@@ -108,15 +108,15 @@ export const CategoriesPage = () => {
                 )}
             />
             <Modal ref={addModal}>
-                <CategoryForm closeModal={() => closeModal(addModal)} />
+                <CategoryForm onCloseModal={() => closeModal(addModal)} />
             </Modal>
 
             <Modal ref={deleteModal}>
-                <ConfirmationModal text="Você realmente deseja apagar?"  onConfirm={handleDelete}  onCancel={() => closeModal(deleteModal)}/>
+                <ConfirmationModal text="Você realmente deseja apagar?" onConfirm={handleDelete} onCancel={() => closeModal(deleteModal)} />
             </Modal>
 
             <Modal ref={editModal}>
-            <CategoryForm closeModal={() => closeModal(editModal)} id={id}/>
+                <CategoryForm onCloseModal={() => closeModal(editModal)} id={id} />
             </Modal>
         </PageAdminLayout>
     )
