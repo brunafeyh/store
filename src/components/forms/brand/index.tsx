@@ -34,12 +34,12 @@ const BrandForm: FC<Props> = ({ onCloseModal, id }) => {
         else await createBrand.mutateAsync(data)
         onCloseModal()
     }
-
+    
     if (createBrand.isPending || updateBrand.isPending || isLoading) return <Loading />
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Typography mb={2} fontWeight={'bold'} color={THEME_COLORS.neutral.c80}>{id ? 'Editar Categoria' : 'Adicionar Categoria'}</Typography>
+            <Typography mb={2} fontWeight={'bold'} color={THEME_COLORS.neutral.c80}>{id ? 'Editar Marca' : 'Adicionar Marca'}</Typography>
             <Box display={'flex'} flexDirection={'column'} gap={2} mb={2}>
                 <TextField
                     variant='filled'

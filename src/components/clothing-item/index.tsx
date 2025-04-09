@@ -1,10 +1,27 @@
 import { FC, useState } from 'react'
 import styles from './ClothingItem.module.scss'
-import { Continue, TriangleLeftOutline } from '@carbon/icons-react'
+import { Continue, Edit, TrashCan, TriangleLeftOutline } from '@carbon/icons-react'
 import { Item } from '../../schemas/item'
+import { closeModal, Modal, openModal, useModal } from '../modal'
+import { useAuth } from '../../hooks/use-auth'
+import { Box, IconButton } from '@mui/material'
+import { useItemsMutations } from '../../hooks/items/use-item-mutations'
+import { THEME_COLORS } from '../../theme/colors'
+import ConfirmationModal from '../confirmation-modal'
+import ItemForm from '../forms/item'
 
 const ClothingItem: FC<{ item: Item }> = ({ item }) => {
+    const { user } = useAuth()
+
+    const notClient = user.role !== 'CLIENT'
+
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+    const { deleteItem } = useItemsMutations()
+
+    const deleteModal = useModal()
+
+    const editModal = useModal()
 
     const handleNextImage = () => {
         setCurrentImageIndex((prev) => (prev + 1) % item.imageUrls.length);
@@ -16,7 +33,12 @@ const ClothingItem: FC<{ item: Item }> = ({ item }) => {
         )
     }
 
-    const isLast = item.imageUrls.length === (currentImageIndex + 1 )
+    const handleDeleleItem = async () => {
+        await deleteItem.mutateAsync(item.id)
+        closeModal(deleteModal)
+    }
+
+    const isLast = item.imageUrls.length === (currentImageIndex + 1)
 
     return (
         <div className={styles.card}>
@@ -38,6 +60,24 @@ const ClothingItem: FC<{ item: Item }> = ({ item }) => {
                 <h3 className={styles.name}>{item.name}</h3>
                 <p className={styles.price}>R$ {item.price.toFixed(2)}</p>
             </div>
+            {notClient && (
+                <Box display={'flex'} flexDirection={'row'} gap={2}>
+                    <IconButton onClick={() => openModal(editModal)}>
+                        <Edit style={{ color: THEME_COLORS.neutral.c60 }} />
+                    </IconButton>
+                    <IconButton onClick={() => openModal(deleteModal)}>
+                        <TrashCan style={{ color: THEME_COLORS.error.c50 }} />
+                    </IconButton>
+                </Box>
+            )}
+
+            <Modal ref={deleteModal}>
+                <ConfirmationModal text='Tem certeza que deseja deletar Item?' onConfirm={handleDeleleItem} onCancel={() => closeModal(deleteModal)} />
+            </Modal>
+
+            <Modal ref={editModal}>
+                <ItemForm onCancel={() => closeModal(editModal)} id={item.id} />
+            </Modal>
         </div>
     )
 }

@@ -1,7 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
 import styles from './ImageUploader.module.scss';
 import { Image, TrashCan } from '@carbon/icons-react';
+import { LocalFile } from '../../types/image';
+import { convertFileToBase64, estimateBase64Size, extractBase64Type, formatSize } from '../../utils/image';
 
 type ImageUploaderProps = {
     name: string;
@@ -10,15 +12,7 @@ type ImageUploaderProps = {
 export const ImageUploader: React.FC<ImageUploaderProps> = ({ name }) => {
     const { control } = useFormContext();
     const inputRef = useRef<HTMLInputElement>(null);
-
-    const convertFileToBase64 = (file: File): Promise<string> => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result as string);
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
-        });
-    };
+    const [localFiles, setLocalFiles] = useState<LocalFile[]>([]);
 
     return (
         <Controller
@@ -26,17 +20,34 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({ name }) => {
             control={control}
             defaultValue={[]}
             render={({ field: { value, onChange } }) => {
+                useEffect(() => {
+                    if (value?.length && localFiles.length === 0) {
+                        const defaultConverted: LocalFile[] = value.map((base64: string, index: number) => ({
+                            name: `Imagem ${index + 1}`,
+                            size: estimateBase64Size(base64),
+                            type: extractBase64Type(base64),
+                            base64,
+                        }));
+                        setLocalFiles(defaultConverted);
+                    }
+                }, [value]);
+
                 const handleFiles = async (files: FileList | null) => {
                     if (!files) return;
                     const fileArray = Array.from(files);
-                    const base64Files = await Promise.all(fileArray.map(convertFileToBase64));
-                    onChange([...(value || []), ...base64Files]);
+                    const converted = await Promise.all(fileArray.map(convertFileToBase64));
+                    setLocalFiles((prev) => [...prev, ...converted]);
+                    const base64Array = converted.map((file) => file.base64);
+                    onChange([...(value || []), ...base64Array]);
                 };
 
                 const handleRemove = (index: number) => {
-                    const updated = [...value];
-                    updated.splice(index, 1);
-                    onChange(updated);
+                    const updatedBase64 = [...value];
+                    const updatedLocal = [...localFiles];
+                    updatedBase64.splice(index, 1);
+                    updatedLocal.splice(index, 1);
+                    onChange(updatedBase64);
+                    setLocalFiles(updatedLocal);
                 };
 
                 return (
@@ -58,13 +69,16 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({ name }) => {
                             />
                         </div>
 
-                        {value?.length > 0 && (
+                        {localFiles.length > 0 && (
                             <div className={styles.fileList}>
-                                {value.map(( index: number) => (
+                                {localFiles.map((file, index) => (
                                     <div key={index} className={styles.fileItem}>
                                         <div className={styles.fileInfo}>
                                             <Image className={styles.fileIcon} />
-                                            <span className={styles.fileName}>Imagem {index + 1}</span>
+                                            <div>
+                                                <span className={styles.fileName}>{file.name}</span><br />
+                                                <small>{file.type} — {formatSize(file.size)}</small>
+                                            </div>
                                         </div>
                                         <button
                                             type="button"
@@ -78,8 +92,8 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({ name }) => {
                             </div>
                         )}
                     </div>
-                );
+                )
             }}
         />
-    );
-};
+    )
+}

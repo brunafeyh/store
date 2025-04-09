@@ -31,6 +31,14 @@ export const ItemsPage: FC = () => {
                 title="Itens"
                 rightSideComponent={
                     <div className={styles.filters}>
+                        <Button
+                            startIcon={<AddLarge />}
+                            variant="contained"
+                            onClick={() => openModal(addModal)}
+                            sx={{ marginRight: 4 }}
+                        >
+                            Adicionar Item
+                        </Button>
                         <TextField
                             variant="filled"
                             type="text"
@@ -65,14 +73,7 @@ export const ItemsPage: FC = () => {
                                 <MenuItem key={brand.id} value={brand.id}>{brand.name}</MenuItem>
                             ))}
                         </TextField>
-                        <Button
-                            startIcon={<AddLarge />}
-                            variant="text"
-                            color="primary"
-                            onClick={() => openModal(addModal)}
-                        >
-                            Adicionar Item
-                        </Button>
+
                     </div>
                 }
             />
