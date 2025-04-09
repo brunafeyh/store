@@ -4,8 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { itemFormSchema, ItemForm as ItemFormValues } from '../../../schemas/item';
 import { useCategories } from '../../../hooks/categories/use-categories';
 import { useBrands } from '../../../hooks/brands/use-brands';
-import styles from './ItemForm.module.scss';
 import { ImageUploader } from '../../image-uploader';
+import { TextField, MenuItem, Button, Box, Typography } from '@mui/material';
 
 const ItemForm: FC<{ onCancel: () => void }> = ({ onCancel }) => {
     const methods = useForm<ItemFormValues>({
@@ -27,10 +27,10 @@ const ItemForm: FC<{ onCancel: () => void }> = ({ onCancel }) => {
         handleSubmit,
         getValues,
         formState: { errors }
-    } = methods;
+    } = methods
 
-    const { data: categories } = useCategories();
-    const { data: brands } = useBrands();
+    const { data: categories } = useCategories()
+    const { data: brands } = useBrands()
 
     const onSubmit = async (data: ItemFormValues) => {
         const fileList = getValues('imageUrls')
@@ -38,77 +38,116 @@ const ItemForm: FC<{ onCancel: () => void }> = ({ onCancel }) => {
             ...data,
             imageUrls: fileList,
         }
-        console.log('Item formatado para envio:', newItem);
+        console.log('Item formatado para envio:', newItem)
     }
 
     return (
         <FormProvider {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-                <div className={styles.fieldGroup}>
-                    <label>SKU</label>
-                    <input type="text" {...register('sku')} />
-                    {errors.sku && <span className={styles.error}>{errors.sku.message}</span>}
-                </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <Box display={'flex'} flexDirection={'column'} gap={2}>
+                    <Typography> Adicionar Item</Typography>
+                    <Box display={'flex'} flexDirection={'row'} gap={2}>
+                        <TextField
+                            variant="filled"
+                            label="SKU"
+                            fullWidth
+                            error={!!errors.sku}
+                            helperText={errors.sku?.message}
+                            {...register('sku')}
+                        />
 
-                <div className={styles.fieldGroup}>
-                    <label>Nome</label>
-                    <input type="text" {...register('name')} />
-                    {errors.name && <span className={styles.error}>{errors.name.message}</span>}
-                </div>
+                        <TextField
+                            variant="filled"
+                            label="Nome"
+                            fullWidth
+                            error={!!errors.name}
+                            helperText={errors.name?.message}
+                            {...register('name')}
+                        />
+                    </Box>
 
-                <div className={styles.fieldGroup}>
-                    <label>Descrição</label>
-                    <textarea {...register('description')} />
-                    {errors.description && <span className={styles.error}>{errors.description.message}</span>}
-                </div>
+                    <Box display={'flex'} flexDirection={'row'} gap={2}>
+                        <TextField
+                            select
+                            variant="filled"
+                            label="Marca"
+                            fullWidth
+                            error={!!errors.brandId}
+                            helperText={errors.brandId?.message}
+                            {...register('brandId')}
+                        >
+                            <MenuItem value="">Selecione</MenuItem>
+                            {brands?.map((b) => (
+                                <MenuItem key={b.id} value={b.id}>{b.name}</MenuItem>
+                            ))}
+                        </TextField>
 
-                <div className={styles.fieldGroup}>
-                    <label>Preço</label>
-                    <input type="number" step="0.01" {...register('price', { valueAsNumber: true })} />
-                    {errors.price && <span className={styles.error}>{errors.price.message}</span>}
-                </div>
+                        <TextField
+                            variant="filled"
+                            type="number"
+                            label="Preço"
+                            fullWidth
+                            error={!!errors.price}
+                            helperText={errors.price?.message}
+                            {...register('price', { valueAsNumber: true })}
+                        />
+                    </Box>
 
-                <div className={styles.fieldGroup}>
-                    <label>Estoque</label>
-                    <input type="number" {...register('stock', { valueAsNumber: true })} />
-                    {errors.stock && <span className={styles.error}>{errors.stock.message}</span>}
-                </div>
+                    <Box display={'flex'} flexDirection={'row'} gap={2}>
+                        <TextField
+                            variant="filled"
+                            type="number"
+                            label="Estoque"
+                            fullWidth
+                            error={!!errors.stock}
+                            helperText={errors.stock?.message}
+                            {...register('stock', { valueAsNumber: true })}
+                        />
+                        <TextField
+                            select
+                            variant="filled"
+                            label="Categoria"
+                            fullWidth
+                            error={!!errors.categoryId}
+                            helperText={errors.categoryId?.message}
+                            {...register('categoryId')}
+                        >
+                            <MenuItem value="">Selecione</MenuItem>
+                            {categories?.map((c) => (
+                                <MenuItem key={c.id} value={c.id}>{c.name}</MenuItem>
+                            ))}
+                        </TextField>
+                    </Box>
 
-                <div className={styles.fieldGroup}>
-                    <label>Categoria</label>
-                    <select {...register('categoryId')}>
-                        <option value="">Selecione</option>
-                        {categories?.map((c) => (
-                            <option key={c.id} value={c.id}>{c.name}</option>
-                        ))}
-                    </select>
-                    {errors.categoryId && <span className={styles.error}>{errors.categoryId.message}</span>}
-                </div>
+                    <TextField
+                        variant="filled"
+                        multiline
+                        minRows={3}
+                        label="Descrição"
+                        fullWidth
+                        error={!!errors.description}
+                        helperText={errors.description?.message}
+                        {...register('description')}
+                    />
 
-                <div className={styles.fieldGroup}>
-                    <label>Marca</label>
-                    <select {...register('brandId')}>
-                        <option value="">Selecione</option>
-                        {brands?.map((b) => (
-                            <option key={b.id} value={b.id}>{b.name}</option>
-                        ))}
-                    </select>
-                    {errors.brandId && <span className={styles.error}>{errors.brandId.message}</span>}
-                </div>
+                    <Box display={'flex'} flexDirection={'column'} gap={2}>
+                        <label>Imagens</label>
+                        <ImageUploader name="imageUrls" />
+                        {errors.imageUrls && <span>Adicione pelo menos uma imagem.</span>}
+                    </Box>
 
-                <div className={styles.fieldGroup}>
-                    <label>Imagens</label>
-                    <ImageUploader name="imageUrls" />
-                    {errors.imageUrls && <span className={styles.error}>Adicione pelo menos uma imagem.</span>}
-                </div>
-
-                <div className={styles.actions}>
-                    <button type="button" className={styles.cancelButton} onClick={onCancel}>Cancelar</button>
-                    <button type="submit" className={styles.submitButton}>Concluir</button>
-                </div>
+                    <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} gap={2}>
+                        <Button variant="outlined" onClick={onCancel} fullWidth>
+                            Cancelar
+                        </Button>
+                        <Button variant="contained" color="primary" type="submit" fullWidth>
+                            Concluir
+                        </Button>
+                    </Box>
+                </Box>
             </form>
         </FormProvider>
     )
 }
 
-export default ItemForm;
+export default ItemForm

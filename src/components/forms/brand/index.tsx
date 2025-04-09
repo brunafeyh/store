@@ -1,11 +1,12 @@
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import styles from '../category/CategoryForm.module.scss'
 import Loading from '../../loading'
 import { brandFormSchema, BrandForm as BrandFormType } from '../../../schemas/brand'
 import { useBrandByid } from '../../../hooks/brands/use-brand-by-id'
 import { useBrandsMutations } from '../../../hooks/brands/use-brands-mutations'
+import { Box, Button, TextField, Typography } from '@mui/material'
+import { THEME_COLORS } from '../../../theme/colors'
 
 interface Props {
     onCloseModal: () => void
@@ -37,38 +38,33 @@ const BrandForm: FC<Props> = ({ onCloseModal, id }) => {
     if (createBrand.isPending || updateBrand.isPending || isLoading) return <Loading />
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-            <div className={styles.fieldGroup}>
-                <label htmlFor="name">Nome</label>
-                <input
-                    id="name"
-                    type="text"
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <Typography mb={2} fontWeight={'bold'} color={THEME_COLORS.neutral.c80}>{id ? 'Editar Categoria' : 'Adicionar Categoria'}</Typography>
+            <Box display={'flex'} flexDirection={'column'} gap={2} mb={2}>
+                <TextField
+                    variant='filled'
+                    type='text'
+                    label='Nome'
                     {...register('name')}
-                    className={errors.name ? styles.errorInput : ''}
+                    error={!!errors.name}
+                    helperText={errors.name?.message}
                 />
-                {errors.name && <span className={styles.error}>{errors.name.message}</span>}
-            </div>
-
-            <div className={styles.fieldGroup}>
-                <label htmlFor="description">Descrição</label>
-                <input
-                    id="description"
-                    type="text"
+                <TextField
+                    variant="filled"
+                    multiline
+                    minRows={3}
+                    label="Descrição"
+                    fullWidth
+                    error={!!errors.description}
+                    helperText={errors.description?.message}
                     {...register('description')}
-                    className={errors.description ? styles.errorInput : ''}
                 />
-                {errors.name && <span className={styles.error}>{errors.name.message}</span>}
-            </div>
+            </Box>
 
-            <div className={styles.buttonGroup}>
-                <button type="button" className={styles.cancelButton} onClick={onCloseModal}>
-                    Cancelar
-                </button>
-
-                <button type="submit" className={styles.submitButton}>
-                    Concluir
-                </button>
-            </div>
+            <Box display={'flex'} flexDirection={'row'} gap={2}>
+                <Button variant='outlined' onClick={onCloseModal} fullWidth>Cancelar</Button>
+                <Button variant='contained' type="submit" onClick={onCloseModal} fullWidth>Concluir</Button>
+            </Box>
         </form>
     )
 }
