@@ -8,6 +8,7 @@ import { CategoriesPage } from './pages/admin/categories'
 import { BrandsPage } from './pages/admin/brands'
 import { ItemsPage } from './pages/admin/items'
 import { StockPage } from './pages/admin/stock'
+import { ClientsPage } from './pages/admin/clients'
 
 export const router = createBrowserRouter([
 	{
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
 			{
 				path: '/admin/products/stock',
 				element: <StockPage />,
+			},
+			{
+				path: '/admin/clients',
+				element: <ClientsPage />,
 			},
 			{
 				path: '*',
