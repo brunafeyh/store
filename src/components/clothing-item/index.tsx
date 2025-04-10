@@ -1,7 +1,6 @@
 import { FC, useState } from 'react'
 import styles from './ClothingItem.module.scss'
 import { Continue, Edit, TrashCan, TriangleLeftOutline } from '@carbon/icons-react'
-import { Item } from '../../schemas/item'
 import { closeModal, Modal, openModal, useModal } from '../modal'
 import { useAuth } from '../../hooks/use-auth'
 import { Box, IconButton } from '@mui/material'
@@ -10,10 +9,19 @@ import { THEME_COLORS } from '../../theme/colors'
 import ConfirmationModal from '../confirmation-modal'
 import ItemForm from '../forms/item'
 
-const ClothingItem: FC<{ item: Item }> = ({ item }) => {
+export type ClothingItemData = {
+    id: string
+    name: string
+    price: number
+    imageUrls: string[]
+    stock: number
+  }
+
+  
+const ClothingItem: FC<{ item: ClothingItemData }> = ({ item }) => {
     const { user } = useAuth()
 
-    const notClient = user.role !== 'CLIENT'
+    const notClient = user.role !== 'CLIENT' && user.role
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
 

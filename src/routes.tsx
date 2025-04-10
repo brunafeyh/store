@@ -10,6 +10,7 @@ import { StockPage } from './pages/admin/stock'
 import { ClientsPage } from './pages/admin/clients'
 import { EmployeesPage } from './pages/admin/employees'
 import { HomePage } from './pages/client/home'
+import { CategoriesItems } from './pages/client/categories'
 
 export const router = createBrowserRouter([
 	{
@@ -30,6 +31,11 @@ export const router = createBrowserRouter([
 			{
 				path: '/admin',
 				element: <AdminHome />,
+			},
+
+			{
+				path: '/categories',
+				element: <CategoriesItems />,
 			},
 
 			{
