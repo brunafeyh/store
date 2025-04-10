@@ -48,7 +48,7 @@ const StockItemForm: FC<Props> = ({ onCloseModal, id }) => {
                     variant='filled'
                     type='number'
                     label='Quantidade em Estoque'
-                    {...register('stock')}
+                    {...register('stock', { valueAsNumber: true })}
                     error={!!errors.stock}
                     helperText={errors.stock?.message}
                 />

@@ -38,7 +38,7 @@ class ItemService {
     }
 
     async updateStockItem(id: string, form: StockItemForm): Promise<void> {
-        await store_API.patch(`${this.apiUrl}/${id}`, form)
+        await store_API.put(`${this.apiUrl}/${id}/stock`, form)
     }
 
     async deleteItem(id: string): Promise<void> {
