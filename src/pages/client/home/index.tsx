@@ -26,7 +26,14 @@ export const HomePage: FC = () => {
   return (
     <div>
       <Header
-        tabs={["Home", "Shop", "Collections", "About", "Contact"]}
+        tabs={[
+          { label: "Home", href: "/" },
+          { label: "Marcas", href: "/brands" },
+          { label: "Categorias", href: "/categories" },
+          { label: "Sobre nós", href: "/about" },
+          { label: "Contato", href: "/contact" },
+        ]}
+        
         rightComponents={
           <>
             <div className="search-container">

@@ -5,9 +5,14 @@ import { IoClose } from "react-icons/io5"
 import './Header.scss'
 import { useAuth } from "../../hooks/use-auth"
 
+type Tab = {
+  label: string
+  href: string
+}
+
 type HeaderProps = {
   rightComponents?: React.ReactNode
-  tabs?: string[]
+  tabs?: Tab[]
 }
 
 const Header: FC<HeaderProps> = ({ rightComponents, tabs }) => {
@@ -34,8 +39,8 @@ const Header: FC<HeaderProps> = ({ rightComponents, tabs }) => {
 
         {tabs && (<nav className="tabs">
           {tabs.map((tab) => (
-            <a href="#" key={tab}>
-              {tab}
+            <a href={tab.href} key={tab.label}>
+              {tab.label}
             </a>
           ))}
         </nav>)}
