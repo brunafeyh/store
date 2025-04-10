@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import PageAdminLayout from "../../../layout/page-admin-layout";
+import PageAdminLayout from "../../../layout/admin";
 import PagesHeader from "../../../components/pages-header";
 import ClothingItem from "../../../components/clothing-item";
 import { useItems } from "../../../hooks/items/use-items";

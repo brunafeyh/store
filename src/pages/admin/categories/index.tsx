@@ -1,5 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import PageAdminLayout from "../../../layout/page-admin-layout";
+import PageAdminLayout from "../../../layout/admin";
 import Table from "../../../components/table";
 import './Category.scss'
 import PagesHeader from "../../../components/pages-header";

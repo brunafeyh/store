@@ -1,8 +1,8 @@
 import { FC, PropsWithChildren, ReactNode } from 'react'
 import styles from './PageAdminLayout.module.scss'
 import { IoHomeOutline, IoPeopleCircleOutline, IoPeopleOutline, IoStorefrontOutline } from 'react-icons/io5'
-import Sidebar from '../components/sidebar'
-import { useSetTitle } from '../hooks/use-title'
+import Sidebar from '../../components/sidebar'
+import { useSetTitle } from '../../hooks/use-title'
 
 interface Props {
   title: string

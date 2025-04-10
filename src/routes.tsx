@@ -1,5 +1,4 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { HomePage } from './pages/client/home'
 import ErrorPage from './pages/error'
 import LoginPage from './pages/login'
 import RegisterPage from './pages/register'
@@ -10,6 +9,7 @@ import { ItemsPage } from './pages/admin/items'
 import { StockPage } from './pages/admin/stock'
 import { ClientsPage } from './pages/admin/clients'
 import { EmployeesPage } from './pages/admin/employees'
+import { HomePage } from './pages/client/home'
 
 export const router = createBrowserRouter([
 	{

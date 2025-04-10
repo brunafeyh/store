@@ -1,7 +1,7 @@
 import { IoAddOutline, IoDownloadOutline } from "react-icons/io5";
 import { closeModal, Modal, ModalOptions, openModal, useModal } from "../../../components/modal";
 import PagesHeader from "../../../components/pages-header";
-import PageAdminLayout from "../../../layout/page-admin-layout";
+import PageAdminLayout from "../../../layout/admin";
 import { useBrands } from "../../../hooks/brands/use-brands";
 import { ColumnDef } from "@tanstack/react-table";
 import { usePaginateArray } from "../../../hooks/use-paginate-array";

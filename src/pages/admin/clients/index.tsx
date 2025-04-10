@@ -1,5 +1,5 @@
 import { FC } from "react";
-import PageAdminLayout from "../../../layout/page-admin-layout";
+import PageAdminLayout from "../../../layout/admin";
 import PagesHeader from "../../../components/pages-header";
 import { useUsers } from "../../../hooks/use-users";
 import Loading from "../../../components/loading";
@@ -31,7 +31,7 @@ export const ClientsPage: FC = () => {
         },
     ]
     if (isLoading) return <Loading />
-    
+
     return (
         <PageAdminLayout title={TITLE}>
             <PagesHeader title={TITLE} />

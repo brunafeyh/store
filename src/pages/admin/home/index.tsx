@@ -1,4 +1,4 @@
-import PageAdminLayout from "../../../layout/page-admin-layout";
+import PageAdminLayout from "../../../layout/admin";
 
 export const AdminHome = () => {
   return(
