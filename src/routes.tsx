@@ -9,6 +9,7 @@ import { BrandsPage } from './pages/admin/brands'
 import { ItemsPage } from './pages/admin/items'
 import { StockPage } from './pages/admin/stock'
 import { ClientsPage } from './pages/admin/clients'
+import { EmployeesPage } from './pages/admin/employees'
 
 export const router = createBrowserRouter([
 	{
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
 			{
 				path: '/admin/clients',
 				element: <ClientsPage />,
+			},
+			{
+				path: '/admin/employees',
+				element: <EmployeesPage />,
 			},
 			{
 				path: '*',
