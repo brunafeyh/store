@@ -11,6 +11,7 @@ import { ClientsPage } from './pages/admin/clients'
 import { EmployeesPage } from './pages/admin/employees'
 import { HomePage } from './pages/client/home'
 import { CategoriesItems } from './pages/client/categories'
+import { BrandsItemsPage } from './pages/client/brands'
 
 export const router = createBrowserRouter([
 	{
@@ -21,51 +22,62 @@ export const router = createBrowserRouter([
 				element: <HomePage />,
 			},
 			{
-				path: '/login',
+				path: 'login',
 				element: <LoginPage />,
 			},
 			{
-				path: '/register',
+				path: 'register',
 				element: <RegisterPage />,
 			},
 			{
-				path: '/admin',
-				element: <AdminHome />,
-			},
-
-			{
-				path: '/categories',
+				path: 'categories',
 				element: <CategoriesItems />,
 			},
-
 			{
-				path: '/admin/dashboard',
-				element: <AdminHome />,
+				path: 'brands',
+				element: <BrandsItemsPage />,
 			},
 			{
-				path: '/admin/products/categories',
-				element: <CategoriesPage />,
-			},
-			{
-				path: '/admin/products/brands',
-				element: <BrandsPage />,
-			},
-
-			{
-				path: '/admin/products/items',
-				element: <ItemsPage />,
-			},
-			{
-				path: '/admin/products/stock',
-				element: <StockPage />,
-			},
-			{
-				path: '/admin/clients',
-				element: <ClientsPage />,
-			},
-			{
-				path: '/admin/employees',
-				element: <EmployeesPage />,
+				path: 'admin',
+				children: [
+					{
+						index: true,
+						element: <AdminHome />,
+					},
+					{
+						path: 'dashboard',
+						element: <AdminHome />,
+					},
+					{
+						path: 'products',
+						children: [
+							{
+								path: 'categories',
+								element: <CategoriesPage />,
+							},
+							{
+								path: 'brands',
+								element: <BrandsPage />,
+							},
+							{
+								path: 'items',
+								element: <ItemsPage />,
+							},
+							{
+								path: 'stock',
+								element: <StockPage />,
+							},
+						],
+					},
+					{
+						path: 'clients',
+						element: <ClientsPage />,
+					},
+					{
+						path: 'employees',
+						element: <EmployeesPage />,
+					},
+				],
 			},
 			{
 				path: '*',
