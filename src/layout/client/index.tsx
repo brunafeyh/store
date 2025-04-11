@@ -5,8 +5,9 @@ import { useAuth } from '../../hooks/use-auth'
 import { useNavigate } from 'react-router-dom'
 import { Popover, usePopover } from '../../components/popover'
 import Header from '../../components/header'
-import { IoCartOutline, IoPersonOutline, IoSearchOutline, IoSettingsOutline } from 'react-icons/io5'
+import { IoCartOutline, IoPersonOutline, IoSettingsOutline } from 'react-icons/io5'
 import AccountPopoverContent from '../../components/account-popover-content'
+import { Tooltip } from '@mui/material'
 
 interface Props {
     title: string
@@ -42,21 +43,22 @@ const PageClientLayout: FC<PropsWithChildren<Props>> = ({ title, children }) => 
 
                 rightComponents={
                     <>
-                        <div className="search-container">
-                            <input type="text" placeholder="Search for products..." />
-                            <IoSearchOutline className="search-icon" />
-                        </div>
-
-                        <button onClick={handlePersonClick} className={styles.iconButton}>
-                            <IoPersonOutline size={22} className="icon" />
-                        </button>
+                        <Tooltip title='Conta'>
+                            <button onClick={handlePersonClick} className={styles.iconButton}>
+                                <IoPersonOutline size={22} className="icon" />
+                            </button>
+                        </Tooltip>
 
                         {isAdminOrEmployee ? (
-                            <button onClick={goToAdminPage} className={styles.iconButton}>
-                                <IoSettingsOutline size={22} className="icon" />
-                            </button>
+                            <Tooltip title='Configurações'>
+                                <button onClick={goToAdminPage} className={styles.iconButton}>
+                                    <IoSettingsOutline size={22} className="icon" />
+                                </button>
+                            </Tooltip>
                         ) : (
-                            <IoCartOutline size={22} className="icon" />
+                            <Tooltip title='Carrinho'>
+                                <IoCartOutline size={22} className="icon" />
+                            </Tooltip>
                         )}
                     </>
                 }

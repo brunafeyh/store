@@ -11,7 +11,6 @@ const TITLE = "Categorias"
 export const CategoriesItems: FC = () => {
     const { data, isLoading } = useCategories()
     if (isLoading) return <Loading />
-
     return (
         <PageClientLayout title={TITLE}>
             <Box marginRight={4} marginLeft={4}>

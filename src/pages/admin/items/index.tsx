@@ -7,10 +7,10 @@ import Loading from "../../../components/loading";
 import { useCategories } from "../../../hooks/categories/use-categories";
 import { useBrands } from "../../../hooks/brands/use-brands";
 import styles from './ItemsPage.module.scss';
-import { TextField, MenuItem, Button } from '@mui/material';
+import { TextField, MenuItem, Button, InputAdornment } from '@mui/material';
 import { closeModal, Modal, openModal, useModal } from "../../../components/modal";
 import ItemForm from "../../../components/forms/item";
-import { AddLarge } from "@carbon/icons-react";
+import { AddLarge, Search } from "@carbon/icons-react";
 
 export const ItemsPage: FC = () => {
     const [categoryId, setCategoryId] = useState('');
@@ -42,8 +42,16 @@ export const ItemsPage: FC = () => {
                         <TextField
                             variant="filled"
                             type="text"
-                            sx={{ width: 200 }}
+                            sx={{ width: 250 }}
                             label="Buscar por nome..."
+                            InputProps={{
+                                startAdornment: (
+                                  <InputAdornment position="start">
+                                    <Search />
+                                  </InputAdornment>
+                                ),
+                                disableUnderline: true,
+                              }}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
