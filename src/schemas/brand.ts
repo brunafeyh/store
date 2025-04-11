@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { simpleItemSchema } from "./categories";
 
 export const brandFormSchema = z.object({
     name: z.string(),
@@ -12,7 +13,8 @@ export const brandSchema = z.object({
     name: z.string(),
     description: z.string(),
     createdAt: z.string(),
-    updatedAt: z.string()
+    updatedAt: z.string(),
+    items: z.array(simpleItemSchema)
 })
 
 export type Brand = z.infer<typeof brandSchema>
