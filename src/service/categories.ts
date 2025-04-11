@@ -1,5 +1,6 @@
 import store_API from "../shared";
-import { Category, CategoryForm } from "../schemas/categories";
+import { Category, CategoryForm, FilterCategoryParamns } from "../schemas/categories";
+import { AxiosResponse } from "axios";
 
 class CategoriesService {
     private apiUrl: string;
@@ -8,8 +9,12 @@ class CategoriesService {
         this.apiUrl = apiUrl;
     }
 
-    async listCategories(): Promise<Category[]> {
-        const response = await store_API.get(`${this.apiUrl}`)
+    async listAll(
+        filters?: FilterCategoryParamns,
+    ): Promise<Category[]> {
+        const response: AxiosResponse<Category[]> = await store_API.get(`${this.apiUrl}`, {
+            params: { ...filters, },
+        })
         return response.data
     }
 

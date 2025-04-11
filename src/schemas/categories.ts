@@ -27,3 +27,10 @@ export const categorySchema = z.object({
 })
 
 export type Category = z.infer<typeof categorySchema>
+
+
+export const filterCategorySchema = z.object({
+    name: z.string(),
+})
+
+export type FilterCategoryParamns = z.infer<typeof filterCategorySchema>
