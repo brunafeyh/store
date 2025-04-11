@@ -1,5 +1,6 @@
 import store_API from "../shared";
-import { Brand, BrandForm } from "../schemas/brand";
+import { Brand, BrandForm, FilterBrandParamns } from "../schemas/brand";
+import { AxiosResponse } from "axios";
 
 class BrandsService {
     private apiUrl: string;
@@ -8,10 +9,14 @@ class BrandsService {
         this.apiUrl = apiUrl;
     }
 
-    async listBrands(): Promise<Brand[]> {
-        const response = await store_API.get(`${this.apiUrl}`)
-        return response.data
-    }
+    async listAll(
+		filters?: FilterBrandParamns,
+	): Promise<Brand[]> {
+		const response: AxiosResponse<Brand[]> = await store_API.get(`${this.apiUrl}`, {
+			params: { ...filters, },
+		})
+		return response.data
+	}
 
     async getBrandsById(id: string): Promise<Brand> {
         const response = await store_API.get(`${this.apiUrl}/${id}`)

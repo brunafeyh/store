@@ -18,3 +18,9 @@ export const brandSchema = z.object({
 })
 
 export type Brand = z.infer<typeof brandSchema>
+
+export const filterBrandSchema = z.object({
+    name: z.string(),
+})
+
+export type FilterBrandParamns = z.infer<typeof filterBrandSchema>

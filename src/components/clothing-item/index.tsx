@@ -3,7 +3,7 @@ import styles from './ClothingItem.module.scss'
 import { Continue, Edit, TrashCan, TriangleLeftOutline } from '@carbon/icons-react'
 import { closeModal, Modal, openModal, useModal } from '../modal'
 import { useAuth } from '../../hooks/use-auth'
-import { Box, IconButton } from '@mui/material'
+import { Box, Chip, IconButton } from '@mui/material'
 import { useItemsMutations } from '../../hooks/items/use-item-mutations'
 import { THEME_COLORS } from '../../theme/colors'
 import ConfirmationModal from '../confirmation-modal'
@@ -46,7 +46,11 @@ const ClothingItem: FC<{ item: ClothingItemData }> = ({ item }) => {
         closeModal(deleteModal)
     }
 
-    const isLast = item.imageUrls.length === (currentImageIndex + 1)
+    const isSoldOut = item.stock === 0
+
+    const isLastItem = item.stock === 1
+
+    const isLastimage = item.imageUrls.length === (currentImageIndex + 1)
 
     return (
         <div className={styles.card}>
@@ -59,7 +63,7 @@ const ClothingItem: FC<{ item: ClothingItemData }> = ({ item }) => {
                 {item.imageUrls.length > 1 && (
                     <>
                         <button onClick={handlePrevImage} className={`${styles.navButton} ${styles.left}`}>{<TriangleLeftOutline />}</button>
-                        {!isLast && <button onClick={handleNextImage} className={`${styles.navButton} ${styles.right}`}>{<Continue />}</button>}
+                        {!isLastimage && <button onClick={handleNextImage} className={`${styles.navButton} ${styles.right}`}>{<Continue />}</button>}
                     </>
                 )}
 
@@ -78,6 +82,8 @@ const ClothingItem: FC<{ item: ClothingItemData }> = ({ item }) => {
                     </IconButton>
                 </Box>
             )}
+            {isSoldOut && <Chip label="Esgotado" />}
+            {isLastItem && <Chip label="Último Item em Estoque" color="primary" variant="outlined" />}
 
             <Modal ref={deleteModal}>
                 <ConfirmationModal text='Tem certeza que deseja deletar Item?' onConfirm={handleDeleleItem} onCancel={() => closeModal(deleteModal)} />
